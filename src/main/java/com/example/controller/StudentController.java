@@ -47,8 +47,10 @@ public class StudentController {
 		Student existingStudent = studentService.findStudent(id);
 		existingStudent.setId(id);
 		existingStudent.setFirstName(student.getFirstName());
-		existingStudent.setFirstName(student.getLastName());
-		existingStudent.setFirstName(student.getEmail());
+		existingStudent.setLastName(student.getLastName());
+		existingStudent.setEmail(student.getEmail());
+		
+		// save updated student object
 		studentService.updateStudent(existingStudent);
 		
 		return "redirect:/students";		
@@ -59,6 +61,7 @@ public class StudentController {
 	@GetMapping("/students/{id}")
 	public String deleteStudent(@PathVariable Long id) {
 		
+		studentService.deleteStudentById(id);
 		return "redirect:/students";
 	}
 	
